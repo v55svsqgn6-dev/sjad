@@ -34,107 +34,137 @@
             min-height: 100vh;
         }
         
-        /* 顶部图片区域 - 移动到最前面 */
-        .image-auth-section {
+        /* 顶部海报区域 - 9:16比例 */
+        .poster-section {
             width: 100%;
-            position: relative;
-            margin-bottom: 0;
-        }
-        
-        /* 图片容器 - 作为内容的一部分，不是背景 */
-        .image-container {
-            width: 100%;
-            height: 70vh; /* 使用视口高度单位，确保占据首屏主要空间 */
-            min-height: 500px; /* 设置最小高度 */
             position: relative;
             overflow: hidden;
         }
         
-        .main-image {
+        /* 海报容器 - 9:16比例 */
+        .poster-container {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 9:16比例的图片容器 */
+        .poster-image-wrapper {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 9:16比例的计算：100vw * 16/9 = 177.78vw，但我们希望高度自适应 */
+        /* 我们使用垂直方向的9:16比例，即高度是宽度的177.78% */
+        .poster-image-wrapper::before {
+            content: "";
+            display: block;
+            padding-top: 177.78%; /* 9:16比例的垂直方向(16/9=1.7778) */
+        }
+        
+        .poster-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 保持图片比例并覆盖整个容器 */
+            object-fit: cover; /* 确保图片覆盖整个区域 */
             display: block;
         }
         
-        /* 认证按钮覆盖在图片上 - 位于图片中间偏下位置 */
-        .auth-overlay {
+        /* 海报上的认证区域 */
+        .poster-auth-area {
             position: absolute;
-            bottom: 20%;
+            bottom: 10%; /* 从底部10%开始 */
             left: 0;
             right: 0;
             text-align: center;
-            z-index: 10;
+            z-index: 20;
+            padding: 0 20px;
         }
         
-        .auth-button {
+        /* 认证按钮 */
+        .auth-button-large {
             background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
             color: white;
             border: none;
             border-radius: 50px;
-            padding: 20px 60px;
+            padding: 20px 50px;
             font-size: 1.6rem;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.8);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 15px;
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
         }
         
-        .auth-button:hover {
+        .auth-button-large:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.8);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 1);
         }
         
-        .auth-button:active {
+        .auth-button-large:active {
             transform: translateY(0);
         }
         
-        .button-note {
-            font-size: 1rem;
+        .button-note-large {
+            font-size: 1.1rem;
             color: white;
-            margin-top: 10px;
-            font-weight: 500;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-        }
-        
-        /* 图片上的文字叠加 */
-        .image-text-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            color: white;
-        }
-        
-        .image-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        }
-        
-        .image-subtitle {
-            font-size: 1.4rem;
             font-weight: 600;
-            margin-bottom: 5px;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 0 auto;
         }
         
-        /* 内容区域 - 调整到图片下方 */
+        /* 海报上的二维码区域 */
+        .poster-qr-area {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            z-index: 20;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            max-width: 200px;
+        }
+        
+        .qr-code {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 10px;
+            background: #f8f9fa;
+            border: 2px solid #1a5fb4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1a5fb4;
+        }
+        
+        .qr-text {
+            font-size: 0.9rem;
+            color: #1a5fb4;
+            font-weight: 700;
+        }
+        
+        /* 内容区域 - 在图片下方 */
         .content-area {
             flex: 1;
-            padding: 30px 40px;
+            padding: 30px 20px;
             background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
-            position: relative;
         }
         
         /* 标题区域 */
@@ -170,6 +200,27 @@
             color: #1c71d8;
             font-weight: 700;
             margin-top: 10px;
+        }
+        
+        /* 扫码说明 */
+        .scan-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a5fb4 0%, #1c71d8 100%);
+            border-radius: 10px;
+            color: white;
+        }
+        
+        .scan-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .scan-desc {
+            font-size: 1.1rem;
+            font-weight: 500;
         }
         
         /* 信息网格 */
@@ -278,27 +329,6 @@
             text-align: center;
         }
         
-        /* 扫码说明 */
-        .scan-section {
-            text-align: center;
-            margin-bottom: 25px;
-            padding: 15px;
-            background: linear-gradient(135deg, #1a5fb4 0%, #1c71d8 100%);
-            border-radius: 10px;
-            color: white;
-        }
-        
-        .scan-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .scan-desc {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        
         /* 底部信息 */
         .footer {
             text-align: center;
@@ -325,7 +355,7 @@
         /* 响应式设计 */
         @media (max-width: 992px) {
             .content-area {
-                padding: 20px 25px;
+                padding: 20px 15px;
             }
             
             .main-title {
@@ -340,22 +370,28 @@
                 grid-template-columns: 1fr;
             }
             
-            .image-container {
-                height: 60vh;
-                min-height: 400px;
-            }
-            
-            .auth-button {
-                padding: 18px 50px;
+            .auth-button-large {
+                padding: 18px 40px;
                 font-size: 1.4rem;
+                max-width: 280px;
             }
             
-            .image-title {
-                font-size: 1.8rem;
+            .button-note-large {
+                font-size: 1rem;
+                max-width: 400px;
             }
             
-            .image-subtitle {
-                font-size: 1.2rem;
+            .poster-qr-area {
+                top: 15%;
+                right: 5%;
+                padding: 10px;
+                max-width: 150px;
+            }
+            
+            .qr-code {
+                width: 100px;
+                height: 100px;
+                font-size: 1rem;
             }
         }
         
@@ -368,32 +404,37 @@
                 font-size: 1.3rem;
             }
             
-            .image-container {
-                height: 50vh;
-                min-height: 350px;
-            }
-            
-            .auth-button {
-                padding: 16px 40px;
+            .auth-button-large {
+                padding: 16px 30px;
                 font-size: 1.3rem;
+                max-width: 250px;
             }
             
-            .auth-overlay {
-                bottom: 15%;
+            .button-note-large {
+                font-size: 0.9rem;
+                max-width: 350px;
             }
             
-            .partner-grid {
-                grid-template-columns: 1fr;
+            .poster-qr-area {
+                top: 10%;
+                right: 3%;
+                max-width: 120px;
             }
             
-            .scan-title {
-                font-size: 1.3rem;
+            .qr-code {
+                width: 80px;
+                height: 80px;
+                font-size: 0.8rem;
+            }
+            
+            .qr-text {
+                font-size: 0.8rem;
             }
         }
         
         @media (max-width: 480px) {
             .content-area {
-                padding: 15px 20px;
+                padding: 15px 10px;
             }
             
             .main-title {
@@ -404,27 +445,31 @@
                 font-size: 1.2rem;
             }
             
-            .image-container {
-                height: 45vh;
-                min-height: 300px;
-            }
-            
-            .auth-button {
-                padding: 14px 30px;
+            .auth-button-large {
+                padding: 14px 25px;
                 font-size: 1.2rem;
-                width: 90%;
+                max-width: 220px;
             }
             
-            .auth-overlay {
-                bottom: 10%;
+            .button-note-large {
+                font-size: 0.8rem;
+                padding: 8px 15px;
+                max-width: 300px;
             }
             
-            .image-title {
-                font-size: 1.5rem;
+            .poster-qr-area {
+                display: none; /* 在非常小的屏幕上隐藏二维码区域 */
+            }
+        }
+        
+        /* 横屏设备适配 */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .poster-image-wrapper::before {
+                padding-top: 120%; /* 横屏时调整比例 */
             }
             
-            .image-subtitle {
-                font-size: 1rem;
+            .poster-auth-area {
+                bottom: 5%; /* 横屏时按钮位置上移 */
             }
         }
     </style>
@@ -433,30 +478,34 @@
 <body>
     <div class="container">
         <div class="main-layout">
-            <!-- 顶部图片区域 - 移动到最前面 -->
-            <div class="image-auth-section">
-                <div class="image-container">
-                    <!-- 主要图片 -->
-                    <img src="ad-image.jpg" alt="手佳江南SPA" class="main-image">
-                    
-                    <!-- 图片上的文字叠加 -->
-                    <div class="image-text-overlay">
-                        <h3 class="image-title">手佳江南SPA</h3>
-                        <p class="image-subtitle">U86娱乐综合盘</p>
-                    </div>
-                    
-                    <!-- 认证按钮覆盖在图片上 -->
-                    <div class="auth-overlay">
-                        <button class="auth-button" id="authButton">
-                            <i class="fas fa-wifi"></i>
-                            一键认证上网
-                        </button>
-                
+            <!-- 顶部海报区域 - 9:16比例 -->
+            <div class="poster-section">
+                <div class="poster-container">
+                    <div class="poster-image-wrapper">
+                        <!-- 海报图片 - 9:16比例 -->
+                        <img src="ad-image.jpg" alt="手佳江南SPA海报" class="poster-image">
+                        
+                        <!-- 二维码区域 -->
+                        <div class="poster-qr-area">
+                            <div class="qr-code">
+                                二维码
+                            </div>
+                            <div class="qr-text">u86.com</div>
+                        </div>
+                        
+                        <!-- 认证按钮区域 -->
+                        <div class="poster-auth-area">
+                            <button class="auth-button-large" id="authButton">
+                                <i class="fas fa-wifi"></i>
+                                一键认证上网
+                            </button>
+                   
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- 内容区域 - 调整到图片下方 -->
+            <!-- 内容区域 -->
             <div class="content-area">
                 <!-- 标题区域 -->
                 <div class="header">
@@ -580,12 +629,12 @@
                 }
             }
             
-            // 确保图片正确加载
-            const mainImage = document.querySelector('.main-image');
-            if (mainImage) {
-                mainImage.onerror = function() {
-                    console.error('图片加载失败，请确保ad-image.jpg文件存在');
-                    // 设置备用背景色
+            // 确保海报图片正确加载
+            const posterImage = document.querySelector('.poster-image');
+            if (posterImage) {
+                posterImage.onerror = function() {
+                    console.error('海报图片加载失败，请确保ad-image.jpg文件存在');
+                    // 设置备用背景
                     this.style.backgroundColor = '#1a5fb4';
                     this.style.display = 'flex';
                     this.style.alignItems = 'center';
@@ -593,7 +642,8 @@
                     this.style.color = 'white';
                     this.style.fontSize = '1.5rem';
                     this.style.fontWeight = 'bold';
-                    this.innerHTML = '手佳江南SPA<br>U86娱乐综合盘';
+                    this.style.flexDirection = 'column';
+                    this.innerHTML = '<div>手佳江南SPA</div><div>U86娱乐综合盘</div><div style="font-size: 1.2rem; margin-top: 10px;">广告图片加载失败</div>';
                 };
             }
         });
