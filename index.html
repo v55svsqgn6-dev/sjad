@@ -45,7 +45,7 @@
         .image-container {
             width: 100%;
             height: 70vh; /* 使用视口高度单位，确保占据首屏主要空间 */
-            min-height: 1200px; /* 设置最小高度 */
+            min-height: 500px; /* 设置最小高度 */
             position: relative;
             overflow: hidden;
         }
@@ -60,7 +60,7 @@
         /* 认证按钮覆盖在图片上 - 位于图片中间偏下位置 */
         .auth-overlay {
             position: absolute;
-            bottom: 40%;
+            bottom: 20%;
             left: 0;
             right: 0;
             text-align: center;
@@ -449,9 +449,11 @@
                     <div class="auth-overlay">
                         <button class="auth-button" id="authButton">
                             <i class="fas fa-wifi"></i>
-                            一键认证 免费上网
+                            一键认证上网
                         </button>
-                  
+                
+                    </div>
+                </div>
             </div>
             
             <!-- 内容区域 - 调整到图片下方 -->
