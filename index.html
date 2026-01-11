@@ -99,14 +99,18 @@
     align-items: center;
     gap: 15px;
     margin-bottom: 15px;
-           }
- /* 大尺寸按钮变体（标准款） */
+white-space: nowrap; /* 强制文字单行 */
+  overflow: hidden; /* 可选：隐藏溢出文字 */
+  text-overflow: ellipsis; /* 可选：溢出显示省略号 */
+}
+
+/* 大尺寸按钮变体（加宽） */
 .auth-button-large {
   width: 100%;
-  max-width: 550px; /* 原宽度上限 */
+  max-width: 550px; /* 增大最大宽度，也可设为none取消限制 */
   justify-content: center;
-  /* 新增固定高度，避免内边距波动 */
-  height: 52px;
+  /* 可选：新增固定高度，保持垂直比例 */
+  height: 55px;
 }
 
 .auth-button-large:hover {
