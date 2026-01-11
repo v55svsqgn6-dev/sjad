@@ -99,10 +99,14 @@
     align-items: center;
     gap: 15px;
     margin-bottom: 15px;
-   .auth-button-large {
+           }
+ /* 大尺寸按钮变体（标准款） */
+.auth-button-large {
   width: 100%;
-    max-width: 350px; /* 横向拉长 */
-    justify-content: center;
+  max-width: 350px; /* 原宽度上限 */
+  justify-content: center;
+  /* 新增固定高度，避免内边距波动 */
+  height: 60px;
 }
 
 .auth-button-large:hover {
